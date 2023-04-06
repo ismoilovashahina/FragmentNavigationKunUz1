@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".KunUzMainFragment"
-    android:background="#05122c">
+    android:background="@color/app_color">
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
@@ -127,6 +127,16 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/main_img" />
 
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/recyclerview"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+          app:layout_constraintTop_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          android:layout_marginTop="20dp"
+          tools:listitem="@layout/post_view" />
 
 
 

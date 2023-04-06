@@ -37,7 +37,6 @@
                 android:orientation="horizontal"
                 android:layout_marginBottom="5dp">
                 <ImageView
-                    android:id="@+id/post_i"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

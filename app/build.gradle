@@ -5,12 +5,15 @@ plugins {
 
 android {
     namespace 'uz.itschool.fragmentnavigationkunuz1'
-    compileSdk 32
+    compileSdk 33
 
+    buildFeatures{
+        viewBinding true
+    }
     defaultConfig {
         applicationId "uz.itschool.fragmentnavigationkunuz1"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 

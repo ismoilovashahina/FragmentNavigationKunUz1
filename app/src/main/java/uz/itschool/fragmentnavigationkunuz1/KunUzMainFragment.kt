@@ -5,38 +5,36 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
+import uz.itschool.fragmentnavigationkunuz1.adapter.PostsAdapter
+import uz.itschool.fragmentnavigationkunuz1.databinding.FragmentKunUzMainBinding
+import uz.itschool.fragmentnavigationkunuz1.datas.Post
 
 class KunUzMainFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var postList: MutableList<Post>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_kun_uz_main, container, false)
+        postList = mutableListOf()
+        for (i in 0..15){
+            postList.add(Post(R.drawable.post1img, "17:53 / 28.03.2023", "Experts: Taliban’s “megaproject” could leave all of Central Asia without water"))
+            postList.add(Post(R.drawable.img2, "16:14 / 24.03.2023", "MES publishes list of Uzbek cities and towns located in seismically active zones"))
+            postList.add(Post(R.drawable.img3, "14:44 / 13.03.2023", "Shavkat Mirziyoyev speaks about Uzbekistan’s position in foreign policy"))
+            postList.add(Post(R.drawable.img4, "11:04 / 10.03.2023", "Uzbekistan, Kyrgyzstan discuss construction of Kambarata HPP-1"))
+        }
+        val binding = FragmentKunUzMainBinding.inflate(inflater, container, false)
+        binding.recyclerview.adapter = PostsAdapter(postList, object : PostsAdapter.ForPostClick{
+            override fun onItemClick(post: Post) {
+                val bundle = bundleOf("post" to post)
+                findNavController().navigate(R.id.action_kunUzMainFragment_to_postFragment, bundle)
+            }
+
+        })
+        return binding.root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            KunUzMainFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
